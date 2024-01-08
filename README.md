@@ -3,7 +3,7 @@
 
 ## Overview
 
-This project focuses on implementing parallel algorithms for smoothing RGB color images using the Java Fork-Join library. The assignment involves two parallel filters: a mean filter and a median filter. The mean filter computes the average of surrounding pixels, while the median filter calculates the median value. The median filter is particularly effective at preserving edges in images.
+This project focuses on implementing parallel algorithms for smoothing RGB color images using the Java Fork-Join library. The project involves two parallel filters: a mean filter and a median filter. The mean filter computes the average of surrounding pixels, while the median filter calculates the median value. The median filter is particularly effective at preserving edges in images.
 
 ## Image Smoothing Filters
 
@@ -51,8 +51,6 @@ Contributions are welcome! Feel free to open issues or submit pull requests for 
 This project is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgments
-
-- Special thanks to the Java Fork-Join framework.
 - Image credits: [Source of original image]
 
 ---
