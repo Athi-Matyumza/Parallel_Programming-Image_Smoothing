@@ -8,13 +8,13 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
 public class MeanFilterParallel extends RecursiveAction {
-    int[][] sliding_window;
+    int[][] sliding_window; // 2D array for the sliding window
 
-    BufferedImage image;
-    int[][] pixels;
-    int low, hi, sliding_width;
+    BufferedImage image; // Input image
+    int[][] pixels; // Pixel data of the image
+    int low, hi, sliding_width; // Parameters for parallel processing
 
-    final static int SEQUENTIAL_CUT_OFF = 50;
+    final static int SEQUENTIAL_CUT_OFF = 50; // Threshold for switching to sequential processing
 
     public MeanFilterParallel(int[][] pixels, BufferedImage image, int sliding_width, int low, int hi) {
         this.pixels = pixels;
@@ -23,7 +23,7 @@ public class MeanFilterParallel extends RecursiveAction {
         this.sliding_width = sliding_width;
         this.image = image;
     }
-    
+
     protected void compute() {
         if ((hi - low) < SEQUENTIAL_CUT_OFF) {
             // Creating Sliding window
@@ -40,10 +40,12 @@ public class MeanFilterParallel extends RecursiveAction {
                         sliding_window[i] = Arrays.copyOfRange(sliding_window[i], x, x + sliding_width);
                     }
 
+                    // Set the pixel at the center of the window to the mean value
                     image.setRGB(x + sliding_width/2, y + sliding_width/2, mean(sliding_window));
                 }
             }
         } else {
+            // Split the task into two sub-tasks
             MeanFilterParallel left = new MeanFilterParallel(pixels, image, sliding_width, low, (hi + low) / 2);
             MeanFilterParallel right = new MeanFilterParallel(pixels, image, sliding_width, (hi + low) / 2, hi);
 
@@ -68,7 +70,7 @@ public class MeanFilterParallel extends RecursiveAction {
 
         if (file_loc != null) {
             f = new File(file_loc.getPath());
-        }else {
+        } else {
             System.out.println("The file (" + args[0] + ") does not exist.");
             System.exit(0);
         }
@@ -96,6 +98,7 @@ public class MeanFilterParallel extends RecursiveAction {
         long end_time = System.currentTimeMillis() - start_time;
 
         System.out.println("This program takes: " + end_time/1000.0f + " seconds.");
+        
         // Writing to output image
         f = new File(args[1]);
         try {
@@ -107,8 +110,9 @@ public class MeanFilterParallel extends RecursiveAction {
 
     public static int mean(int[][] window) {
         int red = 0, green = 0, blue = 0;
-        int div = window.length*window.length;
+        int div = window.length * window.length;
 
+        // Calculate the mean for each color component
         for (int[] ints : window) {
             for (int x = 0; x < window.length; x++) {
                 red += (ints[x] >> 16) & 0xff;
@@ -121,7 +125,7 @@ public class MeanFilterParallel extends RecursiveAction {
         green /= div;
         blue /= div;
 
-        return ((red<<16) | (green<<8) | blue);
-    }//Ending of mean function
-        
+        // Combine color components and return the result
+        return ((red << 16) | (green << 8) | blue);
+    }
 }
