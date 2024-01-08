@@ -1,2 +1,60 @@
 # Parallel Programming with the Java Fork/Join framework:
-##       2D Median Filter for Image Smoothing
+## Parallel 2D Median Filter for Image Smoothing
+
+## Overview
+
+This project focuses on implementing parallel algorithms for smoothing RGB color images using the Java Fork-Join library. The assignment involves two parallel filters: a mean filter and a median filter. The mean filter computes the average of surrounding pixels, while the median filter calculates the median value. The median filter is particularly effective at preserving edges in images.
+
+## Image Smoothing Filters
+
+### Mean Filter
+- Averages all pixels within the specified window.
+
+### Median Filter
+- Sorts pixels in the window and replaces the target pixel with the median value.
+- RGB color images are processed separately for each color component (red, green, and blue).
+
+## Implementation
+
+- Two parallel filters are implemented using the Java Fork-Join framework.
+- The window width (w) is a specified odd number >= 3.
+- Median filter involves sorting, making it more computationally expensive than the mean filter.
+
+## Usage
+
+1. **Mean Filter:**
+   ```java
+   java ParallelMedianFilterApp mean input_image.jpg output_image.jpg w
+   ```
+
+2. **Median Filter:**
+   ```java
+   java ParallelMedianFilterApp median input_image.jpg output_image.jpg w
+   ```
+
+   - `input_image.jpg`: Path to the input image.
+   - `output_image.jpg`: Path to the output image.
+   - `w`: Window width (an odd number >= 3).
+
+## Benchmarking
+
+- Benchmark the parallel program to determine under which conditions parallelization is worthwhile.
+- Compare the performance of the mean filter and the median filter under varying window widths.
+- Analyze computational cost and parallelization benefits.
+
+## How to Contribute
+
+Contributions are welcome! Feel free to open issues or submit pull requests for enhancements or bug fixes.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgments
+
+- Special thanks to the Java Fork-Join framework.
+- Image credits: [Source of original image]
+
+---
+
+**Note:** Replace placeholders like `input_image.jpg` and `output_image.jpg` with actual file paths. Provide proper credits for image sources. Adjust and expand the content based on actual project details and requirements.
