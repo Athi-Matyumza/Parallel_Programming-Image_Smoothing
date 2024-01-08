@@ -10,14 +10,14 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
 public class MedianFilterParallel extends RecursiveAction {
-    int[][] sliding_window;
+    int[][] sliding_window; // 2D array for the sliding window
 
-    BufferedImage image;
-    int[][] pixels;
-    int low, hi, sliding_width;
+    BufferedImage image; // Input image
+    int[][] pixels; // Pixel data of the image
+    int low, hi, sliding_width; // Parameters for parallel processing
 
-    final static int SEQUENTIAL_CUT_OFF = 50;
-    
+    final static int SEQUENTIAL_CUT_OFF = 50; // Threshold for switching to sequential processing
+
     public MedianFilterParallel(int[][] pixels, BufferedImage image, int sliding_width, int low, int hi) {
         this.pixels = pixels;
         this.low = low;
@@ -46,6 +46,7 @@ public class MedianFilterParallel extends RecursiveAction {
                 }
             }
         } else {
+            // Split the task into two sub-tasks
             MedianFilterParallel left = new MedianFilterParallel(pixels, image, sliding_width, low, (hi + low) / 2);
             MedianFilterParallel right = new MedianFilterParallel(pixels, image, sliding_width, (hi + low) / 2, hi);
             left.fork();
@@ -69,7 +70,7 @@ public class MedianFilterParallel extends RecursiveAction {
 
         if (file_loc != null) {
             f = new File(file_loc.getPath());
-        }else {
+        } else {
             System.out.println("The file (" + args[0] + ") does not exist.");
             System.exit(0);
         }
@@ -128,5 +129,4 @@ public class MedianFilterParallel extends RecursiveAction {
 
         return ((Red << 16) | (Green << 8) | Blue);
     }
-    
 }
