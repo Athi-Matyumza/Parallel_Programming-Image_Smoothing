@@ -32,7 +32,8 @@ This project focuses on implementing parallel algorithms for smoothing RGB color
    java ParallelMedianFilterApp median input_image.jpg output_image.jpg w
    ```
 
-   - `input_image.jpg`: Path to the input image.
+   - <img width="215" alt="Screenshot 2024-01-08 193542" src="https://github.com/Athi-sirmatt/Parallel_Programming-Image-Smoothing/assets/93771863/04a9dbb8-5697-49cf-a1c5-e0e7983bd593">
+: Path to the input image.
    - `output_image.jpg`: Path to the output image.
    - `w`: Window width (an odd number >= 3).
 
