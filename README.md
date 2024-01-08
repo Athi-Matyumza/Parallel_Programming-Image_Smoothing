@@ -49,13 +49,3 @@ This project focuses on implementing parallel algorithms for smoothing RGB color
 
 Contributions are welcome! Feel free to open issues or submit pull requests for enhancements or bug fixes.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## Acknowledgments
-- Image credits: [Source of original image]
-
----
-
-**Note:** Replace placeholders like `input_image.jpg` and `output_image.jpg` with actual file paths. Provide proper credits for image sources. Adjust and expand the content based on actual project details and requirements.
